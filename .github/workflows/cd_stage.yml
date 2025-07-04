@@ -15,5 +15,5 @@ jobs:
           chmod 700 ~/ssh_key
           mkdir -p ~/.ssh
           echo "${{secrets.KNOWN_HOSTS}}" > ~/.ssh/known_hosts
-          ssh -i ~/ssh_key ubuntu@16.171.162.99 -t "cd new_basic-evops && git pull origin main && source PATH=/root/.nvm/versions/node/v22.1.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin && sudo npm install && npm run build && pm2 restart fe && pm2 restart http-server && pm2 restart ws-server"
+          ssh -i ~/ssh_key ubuntu@16.171.162.99 -t "cd new_basic-evops && git pull origin main && export PATH=/root/.nvm/versions/node/v22.1.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin && sudo npm install && npm run build && pm2 restart fe && pm2 restart http-server && pm2 restart ws-server"
 
