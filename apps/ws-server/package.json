@@ -1,7 +1,8 @@
 {
   "name": "ws-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc -b",
     "dev": "npm run build && npm run start",
@@ -10,11 +11,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
   "devDependencies": {
     "@repo/db": "*",
     "@repo/typescript-config": "*"
   },
-  "description": "",
   "dependencies": {
     "@types/ws": "^8.18.1",
     "ws": "^8.18.3"

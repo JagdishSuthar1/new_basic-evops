@@ -1,0 +1,21 @@
+name: Deploying to the ec2
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  deploy_allInOne:
+    name: delpoying all the changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH into server and restart
+        run: |
+          echo "${{secrets.STAGE_SSH_KEY}}" > ~/ssh_key
+          ssh -i ~/ssh_key root@16.171.162.99
+          cd new_basic-evops && git pull
+          npm install
+          npm run build
+          pm2 restart fe
+          pm2 restart http-server
+          pm2 restart ws-server
