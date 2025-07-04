@@ -12,6 +12,7 @@ jobs:
       - name: SSH into server and restart
         run: |
           echo "${{secrets.STAGE_SSH_KEY}}" &> ~/ssh_key
+          chmod 700 ~/ssh_key
           ssh -i ~/ssh_key root@16.171.162.99
           cd new_basic-evops && git pull
           npm install
