@@ -15,7 +15,7 @@ jobs:
           chmod 700 ~/ssh_key
           mkdir -p ~/.ssh
           echo "${{secrets.KNOWN_HOSTS}}" > ~/.ssh/known_hosts
-          ssh -i ~/ssh_key root@16.171.162.99
+          ssh -i ~/ssh_key ubuntu@16.171.162.99
           cd new_basic-evops && git pull
           npm install
           npm run build
