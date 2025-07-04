@@ -15,6 +15,6 @@ jobs:
           chmod 700 ~/ssh_key
           mkdir -p ~/.ssh
           echo "${{secrets.KNOWN_HOSTS}}" > ~/.ssh/known_hosts
-          ssh -i ~/ssh_key ubuntu@16.171.162.99 -t "export NVM_DIR="$HOME/.nvm" && ource "$NVM_DIR/nvm.sh" && cd new_basic-evops && git pull origin main && source /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin && sudo npm install && npm run build &&pm2 restart fe &&pm2 restart http-server &&pm2 restart ws-server"
+          ssh -i ~/ssh_key ubuntu@16.171.162.99 -t "export NVM_DIR="$HOME/.nvm" && source "$NVM_DIR/nvm.sh" && cd new_basic-evops && git pull origin main &&  && npm install && npm run build &&pm2 restart fe &&pm2 restart http-server &&pm2 restart ws-server"
 
       
