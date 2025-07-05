@@ -1,19 +1,27 @@
-name: Deploying to the ec2
+name: Deploy with SSh
 on:
   push:
     branches:
-      - "main"
+      - main
 
 jobs:
-  deploy_allInOne:
-    name: delpoying all the changes
+  deploy:
+    name: Deploying using SSH
     runs-on: ubuntu-latest
-    steps:
-      - name: SSH into server and restart
-        run: |
-          echo "${{secrets.STAGE_SSH_KEY}}" > ~/ssh_key
-          chmod 700 ~/ssh_key
-          mkdir -p ~/.ssh
-          echo "${{secrets.KNOWN_HOSTS}}" > ~/.ssh/known_hosts
-          ssh -i ~/ssh_key ubuntu@16.171.162.99 -t "cd new_basic-evops && git pull origin main && export PATH=/root/.nvm/versions/node/v22.1.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin && sudo npm install && npm run build && pm2 restart fe && pm2 restart http-server && pm2 restart ws-server"
 
+    steps:
+      - name: SSH into server
+        uses: appleboy/ssh-action@v1.0.3
+        with: 
+          host: ${{secrets.SERVER_IP}}
+          username: ubuntu
+          key: ${{secrets.STAGE_SSH_KEY}}
+          port: 22
+          script:
+            cd new_basic-evops
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart fe
+            pm2 restart http-server
+            pm2 restart ws-server
