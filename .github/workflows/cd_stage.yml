@@ -17,7 +17,7 @@ jobs:
           username: ubuntu
           key: ${{secrets.STAGE_SSH_KEY}}
           port: 22
-          script:
+          script: |
             cd new_basic-evops
             git pull origin main
             npm install
