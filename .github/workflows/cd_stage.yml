@@ -19,6 +19,8 @@ jobs:
           port: 22
           script: |
             cd new_basic-evops
+            git add -A
+            git commit -m "add done"
             git pull origin main
             npm install
             npm run build
